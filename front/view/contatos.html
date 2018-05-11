@@ -1,0 +1,42 @@
+
+<div class="jumbotron">
+
+   <!-- <ui-accordions>
+        <ui-accordion title="Accordion 1">
+            jlskjdkflskjdflkjasldjfkjds
+            lskdjflksdjlkfjlskdjfklds
+            lskjdfkljsdjf
+        </ui-accordion>
+        <ui-accordion title="Accordion 2">
+            jlskjdkflskjdflkjasldjfkjds
+            lskdjflksdjlkfjlskdjfklds
+            lskjdfkljsdjf
+        </ui-accordion>
+    </ui-accordions>-->
+
+    <h3>{{ app }}</h3>
+
+
+    <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você esta procurando?">
+    <table class="table" ng-show="contatos.length > 0">
+        <tr>
+            <th></th>
+            <th>Serial</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Operadora</th>
+            <th>Data</th>
+        </tr>
+        <tr ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:'nome'" ng-class="{'selecionado negrito': contato.selecionado}">
+            <td><input type="checkbox" ng-model="contato.selecionado"></td>
+            <td>{{ contato.serial }}</td>
+            <td><a href="#/detalhesContato/{{contato.id}}">{{ contato.nome | name }}</a></td>
+            <td>{{ contato.telefone }}</td>
+            <td style="text-align: center">{{ contato.operadora.nome | lowercase }}</td>
+            <td>{{ contato.data | date:"dd/MM/yyyy" }}</td>
+        </tr>
+    </table>
+    <hr/>
+    <a href="#/novoContato" class="btn btn-primary btn-block">NovoContato</a>
+    <button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
+</div>
